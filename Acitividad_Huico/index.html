@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="Resources/styles.css">
+    <title>SIGCAT</title>
+</head>
+
+<body>
+    <header class="header">
+        <div id="search-container">
+            <div id="search-container-1">
+                <div id="logo">
+                    <h1>Tiendita</h1>
+                    <img src="Resources/images/tienda.png" alt="Logo">
+                </div>
+                <div style="width: 100%;">
+                    <input type="text" placeholder="Abarrotes Lucy" id="search">
+                </div>
+            </div>
+            <div id="search-container-2">
+                <div id="calendar-1">
+                    <img src="Resources/images/calendario.png" alt="Calendario">
+                </div>
+                <div id="calendar-2">
+                    <h1>2023</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="table">
+        <table class="encuesta">
+            <thead>
+                <tr>
+                    <th style="width: 16.66%;">Característica</th>
+                    <th style="width: 16.66%;">
+                        <img src="Resources/images/cara-triste.png" alt="mala">
+                        Mala
+                    </th>
+                    <th style="width: 16.66%;">
+                        <img src="Resources/images/confundido.png" alt="">
+                        Regular
+                    </th>
+                    <th style="width: 16.66%;">
+                        <img src="Resources/images/guau.png" alt="">
+                        Buena
+                    </th>
+                    <th style="width: 16.66%;">
+                        <img src="Resources/images/sonrisas.png" alt="">
+                        Muy Buena
+                    </th>
+                    <th style="width: 16.66%;">
+                        <img src="Resources/images/risa.png" alt="">
+                        Excelente
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Funcionalidad</td>
+                    <td><input type="radio" name="Funcionalidad" value="Mala"></td>
+                    <td><input type="radio" name="Funcionalidad" value="Regular"></td>
+                    <td><input type="radio" name="Funcionalidad" value="Buena"></td>
+                    <td><input type="radio" name="Funcionalidad" value="Muy Buena"></td>
+                    <td><input type="radio" name="Funcionalidad" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Confiabilidad</td>
+                    <td><input type="radio" name="Confiabilidad" value="Mala"></td>
+                    <td><input type="radio" name="Confiabilidad" value="Regular"></td>
+                    <td><input type="radio" name="Confiabilidad" value="Buena"></td>
+                    <td><input type="radio" name="Confiabilidad" value="Muy Buena"></td>
+                    <td><input type="radio" name="Confiabilidad" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Usabilidad</td>
+                    <td><input type="radio" name="Usabilidad" value="Mala"></td>
+                    <td><input type="radio" name="Usabilidad" value="Regular"></td>
+                    <td><input type="radio" name="Usabilidad" value="Buena"></td>
+                    <td><input type="radio" name="Usabilidad" value="Muy Buena"></td>
+                    <td><input type="radio" name="Usabilidad" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Rendimiento</td>
+                    <td><input type="radio" name="Rendimiento" value="Mala"></td>
+                    <td><input type="radio" name="Rendimiento" value="Regular"></td>
+                    <td><input type="radio" name="Rendimiento" value="Buena"></td>
+                    <td><input type="radio" name="Rendimiento" value="Muy Buena"></td>
+                    <td><input type="radio" name="Rendimiento" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Mantenimiento</td>
+                    <td><input type="radio" name="Mantenimiento" value="Mala"></td>
+                    <td><input type="radio" name="Mantenimiento" value="Regular"></td>
+                    <td><input type="radio" name="Mantenimiento" value="Buena"></td>
+                    <td><input type="radio" name="Mantenimiento" value="Muy Buena"></td>
+                    <td><input type="radio" name="Mantenimiento" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Portabilidad</td>
+                    <td><input type="radio" name="Portabilidad" value="Mala"></td>
+                    <td><input type="radio" name="Portabilidad" value="Regular"></td>
+                    <td><input type="radio" name="Portabilidad" value="Buena"></td>
+                    <td><input type="radio" name="Portabilidad" value="Muy Buena"></td>
+                    <td><input type="radio" name="Portabilidad" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Seguridad</td>
+                    <td><input type="radio" name="Seguridad" value="Mala"></td>
+                    <td><input type="radio" name="Seguridad" value="Regular"></td>
+                    <td><input type="radio" name="Seguridad" value="Buena"></td>
+                    <td><input type="radio" name="Seguridad" value="Muy Buena"></td>
+                    <td><input type="radio" name="Seguridad" value="Excelente"></td>
+                </tr>
+                <tr>
+                    <td>Compatibilidad</td>
+                    <td><input type="radio" name="Compatibilidad" value="Mala"></td>
+                    <td><input type="radio" name="Compatibilidad" value="Regular"></td>
+                    <td><input type="radio" name="Compatibilidad" value="Buena"></td>
+                    <td><input type="radio" name="Compatibilidad" value="Muy Buena"></td>
+                    <td><input type="radio" name="Compatibilidad" value="Excelente"></td>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="buttons_container">
+        <button class="btn">
+            <img src="Resources/images/disquete.png" alt="Guardar"> Guardar
+        </button>
+        <button class="btn-1">
+            <img src="Resources/images/escritura.png" alt="Resumen"> Resumen
+        </button>
+        <button class="btn">
+            <img src="Resources/images/error.png" alt="Cancelar"> Cancelar
+        </button>
+        <button class="btn-1">
+            <img src="Resources/images/borrar.png" alt="Borrar"> Borrar
+        </button>
+    </div>
+
+</body>
+
+</html>
