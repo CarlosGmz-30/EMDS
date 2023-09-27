@@ -120,13 +120,14 @@
     display: flex;
     justify-content: space-between;
     margin: 0 5%;
+    margin-bottom: 2%;
 }
 
 .btn{
     background-color: #FFCE2B;
     border: none;
-    width: 150px;
-    height: 40px;
+    width: 200px;
+    height: 45px;
     border-radius: 5px;
     font-size: 20px;
     font-weight: bold;
@@ -147,8 +148,8 @@
 .btn-1{
     background-color: #A7A4A4;
     border: none;
-    width: 150px;
-    height: 40px;
+    width: 200px;
+    height: 45px;
     border-radius: 5px;
     font-size: 20px;
     font-weight: bold;
@@ -181,7 +182,7 @@
 /********************************ESTILOS DE ENCUESTA*********************/
 
 #table{
-    margin-top: 2%;
+    margin-top: 1%;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 2%;
@@ -195,10 +196,10 @@
 }
 
 .encuesta td{
-    height: 50px;
+    height: 60px;
 }
 
-.encuesta img {
+.encuesta thead tr img {
     display: block;
     width: 60px;
     height: 60px;
