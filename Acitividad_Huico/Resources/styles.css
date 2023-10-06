@@ -226,6 +226,21 @@
     height: 20px;
 }
 
+.mala:checked {
+    accent-color: red;
+}
+.regular:checked {
+    accent-color: #cb6327;
+}
+.buena:checked {
+    accent-color: green;
+}
+.muy_buena:checked {
+    accent-color: blue;
+}
+.excelente:checked {
+    accent-color: rebeccapurple;
+}
 /***********************ESTILOS DE ZONA DE PORCENTAJE*********************/
 #percent-container {
     background-color: #42413D;
