@@ -123,6 +123,28 @@
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
+/************************ESTILOS DE DROPDOWN**************************/
+
+#lang{
+    width: 85%;
+    height: 55px;
+    background-color: #c0c0c0;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#send{
+    width: 10%;
+    height: 55px;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+}
 
 /************************ESTILOS DE BOTONES**************************/
 
