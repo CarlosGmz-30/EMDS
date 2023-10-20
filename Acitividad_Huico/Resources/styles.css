@@ -250,7 +250,6 @@
     transform: scale(1.01);
     background-color: #ffce2b13;
     color: #FFCE2B;
-    cursor: pointer;
 }
 
 .encuesta thead tr th img {
@@ -264,6 +263,7 @@
 .encuesta input[type="radio"] {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 .mala:checked {
