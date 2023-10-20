@@ -146,6 +146,24 @@
     font-size: 25px;
 }
 
+#send {
+    border: none;
+    background: url('../Resources/images/buscarBlack.png') no-repeat center center;
+    background-size: 30px 30px;
+    background-color: #FFCE2B;
+    color: transparent;
+    border-radius: 5px;
+    width: 100px;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+#send:hover {
+    background-color: #e9b302;
+    transform: scale(1.01)
+}
+
 /************************ESTILOS DE BOTONES**************************/
 
 #buttons_container {
