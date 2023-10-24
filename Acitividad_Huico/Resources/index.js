@@ -12,26 +12,26 @@ function calcularPorcentaje() {
       console.log(radioButtons.length);
       switch (radio.value) {
         case "Mala":
-          totalPuntos += 1;
+          totalPuntos += 0;
           break;
         case "Regular":
-          totalPuntos += 2;
+          totalPuntos += 1;
           break;
         case "Buena":
-          totalPuntos += 3;
+          totalPuntos += 2;
           break;
         case "Muy Buena":
-          totalPuntos += 4;
+          totalPuntos += 3;
           break;
         case "Excelente":
-          totalPuntos += 5;
+          totalPuntos += 4;
           break;
       }
     }
   });
   const totalRadios = radioButtons.length;
 
-  const porcentaje = ((totalPuntos / 40) * 100).toFixed(2);
+  const porcentaje = ((totalPuntos / 32) * 100).toFixed(2);
 
   // Muestra el porcentaje en el <h2>
   if (respuestasContestadas === 8) {
