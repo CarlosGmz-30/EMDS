@@ -20,7 +20,7 @@
     transition: all 0.5s ease;
 }
 
-.header.fixed{
+.header.fixed {
     position: fixed;
     top: -120px;
     z-index: 1000;
@@ -123,9 +123,10 @@
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 /************************ESTILOS DE DROPDOWN**************************/
 
-#lang{
+#lang {
     width: 85%;
     height: 55px;
     background-color: #c0c0c0;
@@ -138,7 +139,7 @@
     border-bottom-right-radius: 5px;
 }
 
-#send{
+#send {
     width: 10%;
     height: 55px;
     background-color: transparent;
@@ -209,7 +210,6 @@
 /********************************ESTILOS DE ENCUESTA*********************/
 
 #table {
-    margin-top: 4%;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -269,18 +269,23 @@
 .mala:checked {
     accent-color: red;
 }
+
 .regular:checked {
     accent-color: #cb6327;
 }
+
 .buena:checked {
     accent-color: green;
 }
+
 .muy_buena:checked {
     accent-color: blue;
 }
+
 .excelente:checked {
     accent-color: rebeccapurple;
 }
+
 /***********************ESTILOS DE ZONA DE PORCENTAJE*********************/
 #percent-container {
     background-color: #42413D;
@@ -311,4 +316,21 @@
     margin-right: 2%;
     color: #c0c0c0;
     font-size: 14px;
+}
+
+
+/***********************ESTILOS DE ZONA DE NOMBRE DE SISTEMA *********************/
+#system_name {
+    margin-top: 1%;
+    margin-bottom: 1.5%;
+    text-align: center;
+}
+
+#system_name h1 {
+    font-size: 30px;
+    color: #e9b302;
+}
+
+#system_name p {
+    font-weight: bold;
 }
