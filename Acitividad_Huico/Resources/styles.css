@@ -11,7 +11,7 @@
 /*****************************ESTILOS DEL HEADER**************************/
 
 .header {
-    background-color: #42413D;
+    background-color: #021044;
     height: 120px;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
@@ -174,7 +174,7 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 2%;
-    background-color: #42413D;
+    background-color: #009475;
     height: 95px;
     border-radius: 8px;
 }
@@ -291,7 +291,7 @@
     background-color: #42413D;
     margin-right: 5%;
     margin-left: 5%;
-    margin-bottom: 4%;
+    margin-bottom: 2%;
     height: 70px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -324,13 +324,17 @@
     margin-top: 1%;
     margin-bottom: 1.5%;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
-#system_name h1 {
-    font-size: 30px;
+#tittle1 {
+    font-size: 40px;
     color: #e9b302;
 }
 
-#system_name p {
-    font-weight: bold;
+#tittle {
+    color: black;
+    margin-left: 14px;
 }
