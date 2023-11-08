@@ -219,6 +219,28 @@
     margin-right: 10px;
 }
 
+.btn_off {
+    background-color: #c0c0c0;
+    border: none;
+    width: 200px;
+    height: 55px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.btn_off img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
 /********************************ESTILOS DE ENCUESTA*********************/
 
 #table {

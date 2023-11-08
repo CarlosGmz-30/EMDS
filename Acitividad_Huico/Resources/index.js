@@ -1,7 +1,14 @@
 // Obtén todos los radio buttons en la tabla
 const radioButtons = document.querySelectorAll('input[type="radio"]');
+// Todos los button de clase "btn"
+const botones = document.querySelectorAll(".btn");
+// Botones por id
+const btnResumen = document.getElementById("btnResumen");
+const btnBorrar = document.getElementById("btnBorrar");
+const btnGuardar = document.getElementById("btnGuardar");
+const btnCancelar = document.getElementById("btnCancelar");
 
-// Bloqueaamos todos los botones de una vez para obligar a que seleeccionen algo en el select
+// Bloqueaamos todos los radio buttons de una vez para obligar a que seleeccionen algo en el select
 radioButtons.forEach((radio) => {
     radio.disabled = true;
 });
@@ -87,3 +94,54 @@ radioButtons.forEach((radio) => {
 
 // Calcula y muestra el porcentaje inicial
 calcularPorcentaje();
+
+// ------ FUNCIPES DE LOS BOTONES ------
+
+// BOTON CANCELAR
+// Para habilitar el boton cancelar:
+//  Si anioInput y select no estan vacios, habilitar btnCancelar
+anioInput.addEventListener("change", (e) => {
+    if (e.target.value.length === 4) {
+        btnCancelar.disabled = false;
+        btnCancelar.classList.remove("btn_off");
+        btnCancelar.classList.add("btn");
+    } else {
+        btnCancelar.disabled = true;
+    }
+});
+// si se da click en el boton borrar radioButtons y regresar el select a selecciona y borrar el input
+btnCancelar.addEventListener("click", () => {
+    radioButtons.forEach((radio) => {
+        radio.checked = false;
+        radio.disabled = true;
+    });
+    select.value = "selecciona";
+    anioInput.value = "";
+    btnCancelar.disabled = true;
+    btnCancelar.classList.remove("btn");
+    btnCancelar.classList.add("btn_off");
+    porcentajeH2.textContent = `0.00%`;
+});
+
+// BOTON BORRAR
+// Para habilitar el boton borrar:
+// Si radioButtons esta seleccionado al menos uno, habilitar btnBorrar
+radioButtons.forEach((radio) => {
+    radio.addEventListener("change", () => {
+        if (radio.checked) {
+            btnBorrar.disabled = false;
+            btnBorrar.classList.remove("btn_off");
+            btnBorrar.classList.add("btn");
+        }
+    });
+});
+// Si se da click en el boton borrar, borrar todos los radio buttons sleccionados
+btnBorrar.addEventListener("click", () => {
+    radioButtons.forEach((radio) => {
+        radio.checked = false;
+    });
+    btnBorrar.disabled = true;
+    btnBorrar.classList.remove("btn");
+    btnBorrar.classList.add("btn_off");
+    porcentajeH2.textContent = `0.00%`;
+});
