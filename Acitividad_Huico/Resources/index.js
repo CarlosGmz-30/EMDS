@@ -43,7 +43,37 @@ select.addEventListener("change", (e) => {
 
 const porcentajeH2 = document.getElementById("percent_cel");
 
+// Parte de la tabla y porcentaje ---------------------------------------
 // Función para calcular el porcentaje y mostrarlo
+
+// Obtenemos todas las celdas de la tabla
+const tablaCeldas = document.querySelectorAll(".encuesta tbody td");
+
+// Funcion para cambiar el color de la celda
+function cambiarColorCelda(opcion, celda) {
+    celda.classList.remove('rojo', 'naranja', 'amarillo', 'verde', 'azul');
+    // Le asignamos una clase dependiendo de la opcion
+    switch (opcion) {
+        case "Mala":
+            celda.classList.add('rojo');
+            break;
+        case "Regular":
+            celda.classList.add('naranja');
+            break;
+        case "Buena":
+            celda.classList.add('amarillo');
+            break;
+        case "Muy Buena":
+            celda.classList.add('verde');
+            break;
+        case "Excelente":
+            celda.classList.add('azul');
+            break;
+        default:
+            break;
+    }
+}
+
 function calcularPorcentaje() {
     let totalPuntos = 0;
     let respuestasContestadas = 0;
@@ -82,14 +112,44 @@ function calcularPorcentaje() {
     }
 }
 
-// Escucha cambios en los radio buttons
+// Objeto para almacenar el estado de cada radio button
+const radioStates = {};
+
+// Wacha cuando hay cambios en los radio buttons
 radioButtons.forEach((radio) => {
-    radio.addEventListener("change", calcularPorcentaje);
+    radio.addEventListener("change", (e) => {
+        const opcionSeleccionada = e.target.value;
+        const celda = e.target.closest('td');
+        const fila = celda.closest('tr');
+
+        // Si está seleccionado, quita todas las clases de color de la fila actual
+        radioButtons.forEach((otherRadio) => {
+            const otherCelda = otherRadio.closest('td');
+            const otherFila = otherCelda.closest('tr');
+            if (otherRadio !== e.target && otherFila === fila) {
+                otherCelda.classList.remove("rojo", "naranja", "amarillo", "verde", "azul");
+            }
+        });
+
+        // Guarda el estado del radio button
+        radioStates[`${fila.rowIndex}-${opcionSeleccionada}`] = e.target.checked;
+
+        // Aplica o quita la clase correspondiente a la celda
+        if (e.target.checked) {
+            cambiarColorCelda(opcionSeleccionada, celda);
+        } else {
+            celda.classList.remove("rojo", "naranja", "amarillo", "verde", "azul");
+        }
+
+        // Calcula y muestra el porcentaje
+        calcularPorcentaje();
+    });
 });
 
 // Calcula y muestra el porcentaje inicial
 calcularPorcentaje();
 
+// Acaba la parte de la tabla y porcentaje ------------------------------
 // ------ FUNCIPES DE LOS BOTONES ------
 
 // BOTON CANCELAR

@@ -300,25 +300,26 @@
     cursor: pointer;
 }
 
-.mala:checked {
-    accent-color: red;
+.rojo {
+    background-color: rgb(221, 1, 1);
 }
 
-.regular:checked {
-    accent-color: #cb6327;
+.naranja {
+    background-color: rgb(205, 133, 0);
 }
 
-.buena:checked {
-    accent-color: green;
+.amarillo {
+    background-color: rgb(229, 229, 0);
 }
 
-.muy_buena:checked {
-    accent-color: blue;
+.verde {
+    background-color: rgb(0, 111, 0);
 }
 
-.excelente:checked {
-    accent-color: rebeccapurple;
+.azul {
+    background-color: rgb(0, 0, 167);
 }
+
 
 /***********************ESTILOS DE ZONA DE PORCENTAJE*********************/
 #percent-container {
