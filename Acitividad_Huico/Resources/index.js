@@ -12,17 +12,12 @@ const btnCancelar = document.getElementById("btnCancelar");
 radioButtons.forEach((radio) => {
     radio.disabled = true;
 });
-// Obtenemos el input de año y lo asignamos a const anioInput
-const anioInput = document.getElementById("search");
-// Limit a 4 digitos el input de año
-anioInput.addEventListener("input", (e) => {
-    if (e.target.value.length > 4) {
-        e.target.value = e.target.value.slice(0, 4);
-    }
-});
+// Obtenemos el input de "search" y lo asignamos a const anioInput
+const encuesta = document.getElementById("search");
+
 // Obtemener el select y lo asignamos a const select
 const select = document.getElementById("lang");
-// Obteener el value del select e input cada que cambie
+// Obteener el value del select e input "search" cada que cambie
 select.addEventListener("change", (e) => {
     if (e.target.value === "selecciona") {
         radioButtons.forEach((radio) => {
@@ -30,9 +25,9 @@ select.addEventListener("change", (e) => {
             radio.disabled = true;
         });
     } else {
-        // Obtienes el el cada que cambie el input y comparmos hasta que sea de tamaño 4
-        anioInput.addEventListener("change", (e) => {
-            if (e.target.value.length === 4) {
+        // Obtienes el el cada que cambie el input y comparmos hasta que sea minimo tamaño 4
+        encuesta.addEventListener("change", (e) => {
+            if (e.target.value.length >= 4) {
                 radioButtons.forEach((radio) => {
                     radio.disabled = false;
                 });
