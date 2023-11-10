@@ -95,13 +95,11 @@ calcularPorcentaje();
 // BOTON CANCELAR
 // Para habilitar el boton cancelar:
 //  Si anioInput y select no estan vacios, habilitar btnCancelar
-anioInput.addEventListener("change", (e) => {
-    if (e.target.value.length === 4) {
+encuesta.addEventListener("change", () => {
+    if (encuesta.value !== "" && select.value !== "selecciona") {
         btnCancelar.disabled = false;
         btnCancelar.classList.remove("btn_off");
         btnCancelar.classList.add("btn");
-    } else {
-        btnCancelar.disabled = true;
     }
 });
 // si se da click en el boton borrar radioButtons y regresar el select a selecciona y borrar el input
@@ -111,7 +109,7 @@ btnCancelar.addEventListener("click", () => {
         radio.disabled = true;
     });
     select.value = "selecciona";
-    anioInput.value = "";
+    encuesta.value = "";
     btnCancelar.disabled = true;
     btnCancelar.classList.remove("btn");
     btnCancelar.classList.add("btn_off");
@@ -130,6 +128,7 @@ radioButtons.forEach((radio) => {
         }
     });
 });
+
 // Si se da click en el boton borrar, borrar todos los radio buttons sleccionados
 btnBorrar.addEventListener("click", () => {
     radioButtons.forEach((radio) => {
