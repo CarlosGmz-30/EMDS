@@ -80,7 +80,6 @@ function calcularPorcentaje() {
     radioButtons.forEach((radio) => {
         if (radio.checked) {
             respuestasContestadas++;
-            console.log(radioButtons.length);
             switch (radio.value) {
                 case "Mala":
                     totalPuntos += 0;
@@ -104,13 +103,40 @@ function calcularPorcentaje() {
 
     const porcentaje = ((totalPuntos / 32) * 100).toFixed(2);
 
+    const percentContainer = document.getElementById('percent');
+    const percentCelContainer = document.getElementById('percent_cel');
+
     // Muestra el porcentaje en el <h2>
     if (respuestasContestadas === 8) {
-        porcentajeH2.textContent = `${porcentaje}%`;
+        percentCelContainer.textContent = `${porcentaje}%`;
+
+        // Agrega las clases según el rango de porcentaje
+        if (porcentaje >= 90) {
+            percentCelContainer.classList.remove("verde", "amarillo", "rojo");
+            percentCelContainer.classList.add("azul");
+            percentContainer.classList.add("azul");
+        } else if (porcentaje >= 80 && porcentaje < 90) {
+            percentCelContainer.classList.remove("azul", "amarillo", "rojo");
+            percentCelContainer.classList.add("verde");
+            percentContainer.classList.add("verde");
+        } else if (porcentaje >= 70 && porcentaje < 80) {
+            percentCelContainer.classList.remove("azul", "verde", "rojo");
+            percentCelContainer.classList.add("amarillo");
+            percentContainer.classList.add("amarillo");
+        } else if (porcentaje >= 60 && porcentaje < 70) {
+            percentCelContainer.classList.remove("azul", "verde", "amarillo");
+            percentCelContainer.classList.add("naranja");
+            percentContainer.classList.add("naranja");
+        } else {
+            percentCelContainer.classList.remove("azul", "verde", "amarillo", "naranja");
+            percentCelContainer.classList.add("rojo");
+            percentContainer.classList.add("rojo");
+        }
     } else {
-        porcentajeH2.textContent = `0.00%`;
+        percentCelContainer.textContent = `0.00%`;
     }
 }
+
 
 // Objeto para almacenar el estado de cada radio button
 const radioStates = {};
@@ -149,6 +175,18 @@ radioButtons.forEach((radio) => {
 // Calcula y muestra el porcentaje inicial
 calcularPorcentaje();
 
+
+// Función para quitar las clases de color de todas las celdas
+function quitarColores() {
+    tablaCeldas.forEach((celda) => {
+        celda.classList.remove("rojo", "naranja", "amarillo", "verde", "azul");
+    });
+}
+
+// funcion para quitar el color del div de porcentaje
+function quitarColorDiv() {
+    porcentajeH2.classList.remove("rojo", "naranja", "amarillo", "verde", "azul");
+}
 // Acaba la parte de la tabla y porcentaje ------------------------------
 // ------ FUNCIPES DE LOS BOTONES ------
 
@@ -168,6 +206,8 @@ btnCancelar.addEventListener("click", () => {
         radio.checked = false;
         radio.disabled = true;
     });
+    quitarColores(); // Llama a la función para quitar los colores
+    quitarColorDiv()
     select.value = "selecciona";
     encuesta.value = "";
     btnCancelar.disabled = true;
@@ -189,11 +229,13 @@ radioButtons.forEach((radio) => {
     });
 });
 
-// Si se da click en el boton borrar, borrar todos los radio buttons sleccionados
+// Si se da click en el boton borrar, borrar todos los radio buttons seleccionados
 btnBorrar.addEventListener("click", () => {
     radioButtons.forEach((radio) => {
         radio.checked = false;
     });
+    quitarColores(); // Llama a la función para quitar los colores
+    quitarColorDiv()
     btnBorrar.disabled = true;
     btnBorrar.classList.remove("btn");
     btnBorrar.classList.add("btn_off");
