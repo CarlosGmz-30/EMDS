@@ -295,8 +295,8 @@
 }
 
 .encuesta input[type="radio"] {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
@@ -320,6 +320,21 @@
     background-color: rgb(0, 0, 167);
 }
 
+.mala:checked {
+    accent-color: black;
+}
+.regular:checked {
+    accent-color: black;
+}
+.buena:checked {
+    accent-color: black;
+}
+.muy_buena:checked {
+    accent-color: black;
+}
+.excelente:checked {
+    accent-color: black;
+}
 
 /***********************ESTILOS DE ZONA DE PORCENTAJE*********************/
 #percent-container {
