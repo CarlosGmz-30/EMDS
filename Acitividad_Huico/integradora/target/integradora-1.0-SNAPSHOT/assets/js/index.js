@@ -99,8 +99,6 @@ function calcularPorcentaje() {
             }
         }
     });
-    const totalRadios = radioButtons.length;
-
     const porcentaje = ((totalPuntos / 32) * 100).toFixed(2);
 
     const percentContainer = document.getElementById('percent');
@@ -135,9 +133,8 @@ function calcularPorcentaje() {
     } else {
         percentCelContainer.textContent = `0.00%`;
     }
+
 }
-
-
 // Objeto para almacenar el estado de cada radio button
 const radioStates = {};
 
@@ -187,6 +184,7 @@ function quitarColores() {
 function quitarColorDiv() {
     porcentajeH2.classList.remove("rojo", "naranja", "amarillo", "verde", "azul");
 }
+
 // Acaba la parte de la tabla y porcentaje ------------------------------
 // ------ FUNCIPES DE LOS BOTONES ------
 

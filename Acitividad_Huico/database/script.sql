@@ -22,7 +22,7 @@ CREATE TABLE preguntas
 
 CREATE TABLE respuestas
 (
-    id_respuesta varchar(5) not null primary key,
+    id_respuesta int not null auto_increment primary key,
     id_tiendita varchar(5) not null,
     id_encuesta varchar(5) not null,
     id_pregunta varchar(5) not null,
@@ -71,7 +71,7 @@ insert into preguntas
 values ('P07', 'Seguridad');
 insert into preguntas
 values ('P08', 'Compatibilidad');
-
+/*
 insert into respuestas
 values ('R01', 'TDD01', 'E01', 'P01', 1);
 insert into respuestas
@@ -104,6 +104,8 @@ insert into respuestas
 values ('R15', 'TDA02', 'E01', 'P07', 2);
 insert into respuestas
 values ('R16', 'TDA02', 'E01', 'P08', 3);
+ */
+
 
 select *
 from tienditas;
