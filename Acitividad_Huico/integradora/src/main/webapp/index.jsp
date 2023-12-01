@@ -1,5 +1,6 @@
 <jsp:include page="/mostarEncuestas"/>
 <jsp:include page="/mostrarTienditas"/>
+<jsp:include page="/mostrarPreguntas"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -8,6 +9,9 @@
 </c:if>
 <c:if test="${empty tiendas}">
     <jsp:forward page="/mostrarTienditas"/>
+</c:if>
+<c:if test="${empty preguntas}">
+    <jsp:forward page="/mostrarPreguntas"/>
 </c:if>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
@@ -54,7 +58,7 @@
                     <select name="encuenta" id="search">
                         <option value="selecciona"></option>
 
-                        <c:forEach items="${encuestas}" var="encuesta" >
+                        <c:forEach items="${encuestas}" var="encuesta">
                             <option value="${encuesta.id_encuesta}">${encuesta.nombre}</option>
                         </c:forEach>
                     </select>
@@ -101,96 +105,16 @@
             </tr>
             </thead>
             <tbody>
-            ----------------------
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Funcionalidad
-                    <img src="${pageContext.request.contextPath}/assets/images/funcional.png" alt="Funcionalidad"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Funcionalidad" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Funcionalidad" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Funcionalidad" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Funcionalidad" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Funcionalidad" value="Excelente" class="excelente"></td>
-            </tr>
-            ---------------------
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Confiabilidad
-                    <img src="${pageContext.request.contextPath}/assets/images/confiabilidad.png" alt="Confiabilidad"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Confiabilidad" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Confiabilidad" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Confiabilidad" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Confiabilidad" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Confiabilidad" value="Excelente" class="excelente"></td>
-            </tr>
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Usabilidad
-                    <img src="${pageContext.request.contextPath}/assets/images/usabilidad.png" alt="Usabilidad"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Usabilidad" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Usabilidad" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Usabilidad" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Usabilidad" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Usabilidad" value="Excelente" class="excelente"></td>
-            </tr>
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Rendimiento
-                    <img src="${pageContext.request.contextPath}/assets/images/rendimiento.png" alt="Rendimiento"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Rendimiento" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Rendimiento" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Rendimiento" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Rendimiento" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Rendimiento" value="Excelente" class="excelente"></td>
-            </tr>
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Mantenimiento
-                    <img src="${pageContext.request.contextPath}/assets/images/mantenimiento-web.png"
-                         alt="Mantenimiento"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Mantenimiento" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Mantenimiento" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Mantenimiento" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Mantenimiento" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Mantenimiento" value="Excelente" class="excelente"></td>
-            </tr>
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Portabilidad
-                    <img src="${pageContext.request.contextPath}/assets/images/portabilidad.png" alt="Portabilidad"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Portabilidad" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Portabilidad" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Portabilidad" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Portabilidad" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Portabilidad" value="Excelente" class="excelente"></td>
-            </tr>
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Seguridad
-                    <img src="${pageContext.request.contextPath}/assets/images/escudo-seguro.png" alt="Seguridad"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Seguridad" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Seguridad" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Seguridad" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Seguridad" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Seguridad" value="Excelente" class="excelente"></td>
-            </tr>
-            <tr>
-                <td style="border-right: 2px solid #42413D;">Compatibilidad
-                    <img src="${pageContext.request.contextPath}/assets/images/compatibilidad.png" alt="Compatibilidad"
-                         style="height: 40px; width: 40px; float: right; margin-right: 5%;">
-                </td>
-                <td><input type="radio" name="Compatibilidad" value="Mala" class="mala"></td>
-                <td><input type="radio" name="Compatibilidad" value="Regular" class="regular"></td>
-                <td><input type="radio" name="Compatibilidad" value="Buena" class="buena"></td>
-                <td><input type="radio" name="Compatibilidad" value="Muy Buena" class="muy_buena"></td>
-                <td><input type="radio" name="Compatibilidad" value="Excelente" class="excelente"></td>
+            <c:forEach items="${preguntas}" var="pregunta">
+                <tr>
+                    <td style="border-right: 2px solid #42413D;">${pregunta.nombre}</td>
+                    <td><input type="radio" name="${pregunta.nombre}" value="Mala" class="mala"></td>
+                    <td><input type="radio" name="${pregunta.nombre}" value="Regular" class="regular"></td>
+                    <td><input type="radio" name="${pregunta.nombre}" value="Buena" class="buena"></td>
+                    <td><input type="radio" name="${pregunta.nombre}" value="Muy Buena" class="muy_buena"></td>
+                    <td><input type="radio" name="${pregunta.nombre}" value="Excelente" class="excelente"></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
