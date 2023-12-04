@@ -36,7 +36,7 @@
 
 #search-container-1 {
     height: 55px;
-    width: 65%;
+    width: 55%;
     margin-top: 1%;
     margin-left: 5%;
     display: flex;
@@ -44,7 +44,7 @@
 
 #search-container-2 {
     height: 55px;
-    width: 24%;
+    width: 45%;
     margin-top: 1%;
     margin-right: 5%;
 }
@@ -90,7 +90,6 @@
 
 #search-container-2 {
     display: flex;
-    margin-left: 2%;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -119,7 +118,7 @@
 #calendar-1 {
     background-color: #FFCE2B;
     height: 100%;
-    width: 40%;
+    width: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,32 +148,6 @@
     text-transform: uppercase;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-
-#send {
-    width: 10%;
-    height: 55px;
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-}
-
-#send {
-    border: none;
-    background: url('../Resources/images/buscarBlack.png') no-repeat center center;
-    background-size: 30px 30px;
-    background-color: #FFCE2B;
-    color: transparent;
-    border-radius: 5px;
-    width: 100px;
-    font-weight: bold;
-    transition: all 0.4s ease;
-    cursor: pointer;
-}
-
-#send:hover {
-    background-color: #e9b302;
-    transform: scale(1.01)
 }
 
 /************************ESTILOS DE BOTONES**************************/
