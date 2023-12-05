@@ -31,4 +31,9 @@ public class TienditasDao implements DaoRepository<Tienditas> {
         }
         return tiendas;
     }
+
+    @Override
+    public boolean create(Tienditas object) {
+        return false;
+    }
 }

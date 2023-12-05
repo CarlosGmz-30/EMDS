@@ -8,16 +8,16 @@ public class Respuestas {
     id_pregunta varchar(5) not null,
     valor int not null,*/
 
-    private String id_respuesta;
+    private int id_respuesta;
     private String id_tiendita;
     private String id_encuesta;
-    private String id_pregunta;
-    private int valor;
+    private String[] id_pregunta;
+    private int[] valor;
 
     public Respuestas() {
     }
 
-    public Respuestas(String id_respuesta, String id_tiendita, String id_encuesta, String id_pregunta, int valor) {
+    public Respuestas(int id_respuesta, String id_tiendita, String id_encuesta, String[] id_pregunta, int[] valor) {
         this.id_respuesta = id_respuesta;
         this.id_tiendita = id_tiendita;
         this.id_encuesta = id_encuesta;
@@ -25,11 +25,11 @@ public class Respuestas {
         this.valor = valor;
     }
 
-    public String getId_respuesta() {
+    public int getId_respuesta() {
         return id_respuesta;
     }
 
-    public void setId_respuesta(String id_respuesta) {
+    public void setId_respuesta(int id_respuesta) {
         this.id_respuesta = id_respuesta;
     }
 
@@ -49,19 +49,19 @@ public class Respuestas {
         this.id_encuesta = id_encuesta;
     }
 
-    public String getId_pregunta() {
+    public String[] getId_pregunta() {
         return id_pregunta;
     }
 
-    public void setId_pregunta(String id_pregunta) {
+    public void setId_pregunta(String[] id_pregunta) {
         this.id_pregunta = id_pregunta;
     }
 
-    public int getValor() {
+    public int[] getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(int[] valor) {
         this.valor = valor;
     }
 }

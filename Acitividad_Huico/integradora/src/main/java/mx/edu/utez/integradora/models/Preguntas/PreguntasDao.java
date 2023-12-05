@@ -30,4 +30,9 @@ public class PreguntasDao implements DaoRepository<Preguntas> {
         }
         return preguntas;
     }
+
+    @Override
+    public boolean create(Preguntas object) {
+        return false;
+    }
 }

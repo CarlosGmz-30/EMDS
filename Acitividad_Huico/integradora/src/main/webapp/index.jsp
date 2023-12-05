@@ -28,7 +28,7 @@
 </head>
 
 <body>
-<form id="form" action="${pageContext.request.contextPath}/insertarPregunta" method="post">
+<form id="form" action="${pageContext.request.contextPath}/crearRespuestas" method="post">
 
     <header class="header" id="site-header">
         <div id="search-container">
@@ -44,7 +44,6 @@
                             <option value="${tienda.id_tiendita}">${tienda.nombre}</option>
                         </c:forEach>
                     </select>
-                    <input type="submit" value="send" id="send">
                 </div>
             </div>
             <div id="search-container-2">
@@ -57,7 +56,6 @@
                 <div id="calendar-2">
                     <select name="encuenta" id="search">
                         <option value="selecciona"></option>
-
                         <c:forEach items="${encuestas}" var="encuesta">
                             <option value="${encuesta.id_encuesta}">${encuesta.nombre}</option>
                         </c:forEach>
@@ -107,7 +105,7 @@
             <tbody>
             <c:forEach items="${preguntas}" var="pregunta">
                 <tr>
-                    <td style="border-right: 2px solid #42413D;">${pregunta.nombre}</td>
+                    <td style="border-right: 2px solid #42413D;"><input type="hidden" name="${pregunta.id_pregunta}" value="${pregunta.id_pregunta}">${pregunta.nombre}</td>
                     <td><input type="radio" name="${pregunta.nombre}" value="Mala" class="mala"></td>
                     <td><input type="radio" name="${pregunta.nombre}" value="Regular" class="regular"></td>
                     <td><input type="radio" name="${pregunta.nombre}" value="Buena" class="buena"></td>
@@ -140,7 +138,7 @@
         <button class="btn_off" id="btnResumen">
             <img src="${pageContext.request.contextPath}/assets/images/escritura.png" alt="Resumen"> Resumen
         </button>
-        <button class="btn_off" style="margin-right: 3%;" id="btnGuardar">
+        <button class="btn_off" style="margin-right: 3%;" id="btnGuardar" onclick="guardarFormulario()" >
             <img src="${pageContext.request.contextPath}/assets/images/disquete.png" alt="Guardar"> Guardar
         </button>
     </div>
@@ -149,6 +147,14 @@
 
 </body>
 <script src="${pageContext.request.contextPath}/assets/js/index.js">
+        function guardarFormulario() {
+
+
+
+
+
+        document.getElementById('form').submit();
+    }
 </script>
 
 </html>

@@ -27,14 +27,14 @@ select.addEventListener("change", (e) => {
     } else {
         // Obtienes el el cada que cambie el input y comparmos hasta que sea minimo tamaño 4
         encuesta.addEventListener("change", (e) => {
-            if (e.target.value.length >= 4) {
+            if (e.target.value === "selecciona") {
                 radioButtons.forEach((radio) => {
+                    radio.checked = false;
                     radio.disabled = false;
                 });
             } else {
                 radioButtons.forEach((radio) => {
-                    radio.checked = false;
-                    radio.disabled = true;
+                    radio.disabled = false;
                 });
             }
         });
@@ -135,6 +135,7 @@ function calcularPorcentaje() {
     }
 
 }
+
 // Objeto para almacenar el estado de cada radio button
 const radioStates = {};
 

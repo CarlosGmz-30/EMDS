@@ -30,4 +30,9 @@ public class EncuestasDao implements DaoRepository<Encuestas> {
         return encuestas;
     }
 
+    @Override
+    public boolean create(Encuestas object) {
+        return false;
+    }
+
 }
