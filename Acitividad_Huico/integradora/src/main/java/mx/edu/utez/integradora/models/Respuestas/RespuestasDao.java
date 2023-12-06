@@ -1,6 +1,7 @@
 package mx.edu.utez.integradora.models.Respuestas;
 
 import mx.edu.utez.integradora.models.DaoRepository;
+import mx.edu.utez.integradora.models.Resumen.Resumen;
 import mx.edu.utez.integradora.utils.MysqlConector;
 
 import java.sql.Connection;
@@ -37,5 +38,15 @@ public class RespuestasDao implements DaoRepository<Respuestas> {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+    @Override
+    public Respuestas findOne(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Respuestas> findOne(String id_tiendita, String id_encuesta) {
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package mx.edu.utez.integradora.models.Encuestas;
 
 import mx.edu.utez.integradora.models.DaoRepository;
+import mx.edu.utez.integradora.models.Resumen.Resumen;
 import mx.edu.utez.integradora.utils.MysqlConector;
 
 import java.sql.Connection;
@@ -33,6 +34,16 @@ public class EncuestasDao implements DaoRepository<Encuestas> {
     @Override
     public boolean create(Encuestas object) {
         return false;
+    }
+
+    @Override
+    public Encuestas findOne(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Encuestas> findOne(String id_tiendita, String id_encuesta) {
+        return null;
     }
 
 }

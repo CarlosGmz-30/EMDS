@@ -2,6 +2,7 @@ package mx.edu.utez.integradora.models.Tienditas;
 
 import mx.edu.utez.integradora.models.DaoRepository;
 import mx.edu.utez.integradora.models.Encuestas.Encuestas;
+import mx.edu.utez.integradora.models.Resumen.Resumen;
 import mx.edu.utez.integradora.utils.MysqlConector;
 
 import java.sql.Connection;
@@ -35,5 +36,15 @@ public class TienditasDao implements DaoRepository<Tienditas> {
     @Override
     public boolean create(Tienditas object) {
         return false;
+    }
+
+    @Override
+    public Tienditas findOne(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Tienditas> findOne(String id_tiendita, String id_encuesta) {
+        return null;
     }
 }

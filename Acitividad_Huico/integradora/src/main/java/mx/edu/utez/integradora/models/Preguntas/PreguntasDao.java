@@ -2,6 +2,7 @@ package mx.edu.utez.integradora.models.Preguntas;
 
 import mx.edu.utez.integradora.models.DaoRepository;
 import mx.edu.utez.integradora.models.Encuestas.Encuestas;
+import mx.edu.utez.integradora.models.Resumen.Resumen;
 import mx.edu.utez.integradora.utils.MysqlConector;
 
 import java.sql.Connection;
@@ -34,5 +35,15 @@ public class PreguntasDao implements DaoRepository<Preguntas> {
     @Override
     public boolean create(Preguntas object) {
         return false;
+    }
+
+    @Override
+    public Preguntas findOne(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Preguntas> findOne(String id_tiendita, String id_encuesta) {
+        return null;
     }
 }
