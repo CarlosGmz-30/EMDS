@@ -1,7 +1,7 @@
 <jsp:include page="/mostarEncuestas"/>
 <jsp:include page="/mostrarTienditas"/>
 <jsp:include page="/mostrarPreguntas"/>
-<jsp:include page="/mostarResumen"/>
+<jsp:include page="/mostrarResumen"/>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -138,28 +138,20 @@
         <button class="btn_off" id="btnCancelar">
             <img src="${pageContext.request.contextPath}/assets/images/error.png" alt="Cancelar"> Cancelar
         </button>
-        <button class="btn_off" id="btnResumen"  onclick="mostrarResumen()" >
+        <button class="btn_off" id="btnResumen" onclick="mostrarResumen()" type="button" >
             <img src="${pageContext.request.contextPath}/assets/images/escritura.png" alt="Resumen"> Resumen
         </button>
         <button class="btn_off" style="margin-right: 3%;" id="btnGuardar" onclick="guardarFormulario()" >
             <img src="${pageContext.request.contextPath}/assets/images/disquete.png" alt="Guardar"> Guardar
         </button>
     </div>
-    <div id="resultadoResumen">
-        <h2>Resumen:</h2>
-        <c:forEach var="resumen" items="${resumen}">
-            <p>
-                <strong>Tiendita:</strong> ${resumen.tiendita}<br>
-                <strong>Encuesta:</strong> ${resumen.encuesta}<br>
-                <strong>Pregunta:</strong> ${resumen.pregunta}<br>
-                <strong>Respuesta:</strong> ${resumen.respuesta}<br>
-                <strong>Promedio Respuestas (%):</strong> ${resumen.promedioRespuestasPorcentaje}%
-            </p>
-        </c:forEach>
-    </div>
+
 </form>
-
-
+<!--
+<form action="${pageContext.request.contextPath}/mostrarResumen" method="get">
+    <button type="submit">Mostrar resumen</button>
+</form>
+-->
 </body>
 <script src="${pageContext.request.contextPath}/assets/js/index.js">
         function guardarFormulario() {
@@ -174,41 +166,14 @@
 </script>
 <script>
     function mostrarResumen() {
-        // Obtener valores de tiendita y encuesta
-        var id_tiendita = document.getElementById('lang').value;
-        var id_encuesta = document.getElementById('search').value;
+        // Corrige la asignación de la acción (action)
+        document.getElementById('form').action="${pageContext.request.contextPath}/resumen.jsp?tienditas=${idTiendita}&encuenta=${idEncuesta}";
 
-        // Validar que se hayan seleccionado tiendita y encuesta
-        if (id_tiendita === 'selecciona' || id_encuesta === 'selecciona') {
-            // Mostrar un alert en lugar de actualizar el contenido de un div
-            alert('Por favor, selecciona tiendita y encuesta');
-            return;
-        }
+        // Cambia el método del formulario a GET
+        document.getElementById('form').method = 'get';
 
-        // Realizar la solicitud AJAX al servlet
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '${pageContext.request.contextPath}/mostarResumen?tienditas=' + id_tiendita + '&encuenta=' + id_encuesta, true);
-
-        // Configurar la función de devolución de llamada cuando la solicitud se complete
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Obtener la información adicional de la respuesta
-                var tiendita = xhr.getResponseHeader("tiendita");
-                var encuesta = xhr.getResponseHeader("encuesta");
-
-                // Construir el mensaje del alert
-                var mensaje = 'Tiendita: ' + tiendita + '\nEncuesta: ' + encuesta + '\n' + xhr.responseText;
-
-                // Mostrar el resultado del servlet en un alert
-                alert(mensaje);
-            } else {
-                // Manejar errores si es necesario
-                console.error('Error al obtener el resumen');
-            }
-        };
-
-        // Enviar la solicitud
-        xhr.send();
+        // Envía el formulario
+        document.getElementById('form').submit();
     }
 </script>
 

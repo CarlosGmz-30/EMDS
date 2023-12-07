@@ -115,3 +115,123 @@ select *
 from preguntas;
 select *
 from respuestas;
+
+/*
+-- consulta especifica con ID tiendita
+SELECT t.nombre AS 'Tiendita', e.nombre AS 'Encuesta', p.nombre AS 'Pregunta', r.valor AS 'Respuesta'
+FROM tienditas t
+JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+JOIN preguntas p ON r.id_pregunta = p.id_pregunta
+WHERE t.id_tiendita = 'TDA02';
+-- Lo mismo de arriba pero con id
+SELECT t.id_tiendita, t.nombre AS 'Tiendita', e.id_encuesta, e.nombre AS 'Encuesta', p.id_pregunta, p.nombre AS 'Pregunta', r.valor AS 'Respuesta'
+FROM tienditas t
+JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+JOIN preguntas p ON r.id_pregunta = p.id_pregunta
+WHERE t.id_tiendita = 'TDD01';
+
+-- prueba id encuesta //ESTE SE VA A OCUPAR
+SELECT t.nombre AS 'Tiendita', e.nombre AS 'Encuesta', p.nombre AS 'Pregunta', r.valor AS 'Respuesta'
+FROM tienditas t
+JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+JOIN preguntas p ON r.id_pregunta = p.id_pregunta
+WHERE t.id_tiendita = 'TDD01' AND e.id_encuesta = 'E01';
+
+-- Consulta general de todas las tienditas
+SELECT t.nombre AS 'Tiendita', e.nombre AS 'Encuesta', p.nombre AS 'Pregunta', r.valor AS 'Respuesta'
+FROM tienditas t
+JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+JOIN preguntas p ON r.id_pregunta = p.id_pregunta;
+
+
+-- Calcular el promedio de respuestas por tiendita y encuesta en porcentaje
+SELECT
+    t.id_tiendita,
+    t.nombre AS 'Tiendita',
+    e.id_encuesta,
+    e.nombre AS 'Encuesta',
+    AVG(r.valor / 5.0) * 100 AS 'PromedioRespuestasPorcentaje'
+FROM
+    tienditas t
+JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+GROUP BY
+    t.id_tiendita, e.id_encuesta;
+
+--
+--
+--
+--
+-- Calcular el promedio de respuestas por tiendita y encuesta en porcentaje (escala 0-4)
+SELECT
+    t.id_tiendita,
+    t.nombre AS 'Tiendita',
+    e.id_encuesta,
+    e.nombre AS 'Encuesta',
+    AVG((r.valor - 1) / 4.0) * 100 AS 'PromedioRespuestasPorcentaje'
+FROM
+    tienditas t
+        JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+        JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+GROUP BY
+    t.id_tiendita, e.id_encuesta;
+-- Calcular el promedio de respuestas por tiendita para la encuesta(E01) en porcentaje (escala 0-4)
+SELECT
+    t.id_tiendita,
+    t.nombre AS 'Tiendita',
+    e.id_encuesta,
+    e.nombre AS 'Encuesta',
+    AVG((r.valor - 1) / 4.0) * 100 AS 'PromedioRespuestasPorcentaje'
+FROM
+    tienditas t
+        JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+        JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+WHERE
+        e.id_encuesta = 'E01'
+GROUP BY
+    t.id_tiendita, e.id_encuesta;
+--
+SELECT
+    t.id_tiendita,
+    t.nombre AS 'Tiendita',
+    e.id_encuesta,
+    e.nombre AS 'Encuesta',
+    AVG((r.valor - 1) / 4.0) * 100 AS 'PromedioRespuestasPorcentaje'
+FROM
+    tienditas t
+        JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+        JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+WHERE
+        t.id_tiendita = 'TDA02' -- Puedes cambiar 'TDD01' por la variable o parámetro que desees
+  AND e.id_encuesta = 'E02'; -- Agrega esta línea para filtrar por id_encuesta específico
+GROUP BY
+    t.id_tiendita, e.id_encuesta;
+
+--
+SELECT
+    t.id_tiendita,
+    t.nombre AS 'Tiendita',
+    e.id_encuesta,
+    e.nombre AS 'Encuesta',
+    AVG((r.valor - 1) / 4.0) * 100 AS 'PromedioRespuestasPorcentaje'
+FROM
+    tienditas t
+        JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+        JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+WHERE
+        t.id_tiendita = 'TDD01' AND e.id_encuesta = 'E01'
+GROUP BY
+    t.id_tiendita, e.id_encuesta;
+--
+SELECT t.nombre AS 'Tiendita', e.nombre AS 'Encuesta', p.nombre AS 'Pregunta', r.valor AS 'Respuesta'
+FROM tienditas t
+         JOIN respuestas r ON t.id_tiendita = r.id_tiendita
+         JOIN encuestas e ON r.id_encuesta = e.id_encuesta
+         JOIN preguntas p ON r.id_pregunta = p.id_pregunta
+WHERE t.id_tiendita = 'TDA02' AND e.id_encuesta = 'E01';
+
+ */
