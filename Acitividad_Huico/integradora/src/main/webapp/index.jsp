@@ -105,7 +105,9 @@
             <tbody>
             <c:forEach items="${preguntas}" var="pregunta">
                 <tr>
-                    <td style="border-right: 2px solid #42413D;"><input type="hidden" name="${pregunta.id_pregunta}" value="${pregunta.id_pregunta}">${pregunta.nombre}</td>
+                    <td style="border-right: 2px solid #42413D;"><input type="hidden" name="${pregunta.id_pregunta}"
+                                                                        value="${pregunta.id_pregunta}">${pregunta.nombre}
+                    </td>
                     <td><input type="radio" name="${pregunta.nombre}" value="Mala" class="mala"></td>
                     <td><input type="radio" name="${pregunta.nombre}" value="Regular" class="regular"></td>
                     <td><input type="radio" name="${pregunta.nombre}" value="Buena" class="buena"></td>
@@ -129,31 +131,40 @@
     </div>
 
     <div id="buttons_container">
-        <button class="btn_off" id="btnBorrar" style="margin-left: 3%;">
+        <button class="btn_off" id="btnBorrar" style="margin-left: 3%;" disabled>
             <img src="${pageContext.request.contextPath}/assets/images/borrar.png" alt="Limpiar"> Limpiar
         </button>
-        <button class="btn_off" id="btnCancelar">
+        <button class="btn_off" id="btnCancelar" disabled>
             <img src="${pageContext.request.contextPath}/assets/images/error.png" alt="Cancelar"> Cancelar
         </button>
-        <button class="btn_off" id="btnResumen">
+        <button class="btn_off" id="btnResumen" onclick="mostrarResumen()" disabled type="button">
             <img src="${pageContext.request.contextPath}/assets/images/escritura.png" alt="Resumen"> Resumen
         </button>
-        <button class="btn_off" style="margin-right: 3%;" id="btnGuardar" onclick="guardarFormulario()" >
+        <button class="btn_off" style="margin-right: 3%;" id="btnGuardar" onclick="guardarFormulario()" disabled>
             <img src="${pageContext.request.contextPath}/assets/images/disquete.png" alt="Guardar"> Guardar
         </button>
     </div>
 </form>
 
-
 </body>
-<script src="${pageContext.request.contextPath}/assets/js/index.js">
-        function guardarFormulario() {
-
-
-
-
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script>
+    function guardarFormulario() {
         document.getElementById('form').submit();
+    }
+
+    function mostrarResumen() {
+        const selectedEncuestaId = document.getElementById('search').value;
+        // Realizar una solicitud AJAX al servlet
+        $.get('${pageContext.request.contextPath}/mostrarResumen', {idEncuesta: selectedEncuestaId}, function (data) {
+            Swal.fire({
+                title: 'Resumen',
+                html: '<p>Número de tiendas: ' + data.numTiendas + '</p>' +
+                    '<p>Número de tiendas evaluadas: ' + data.numTiendasEvaluadas + '</p>' +
+                    '<p>Promedio General: ' + data.promedioGeneral + '</p>'
+            });
+        });
     }
 </script>
 

@@ -107,7 +107,10 @@ function calcularPorcentaje() {
     // Muestra el porcentaje en el <h2>
     if (respuestasContestadas === 8) {
         percentCelContainer.textContent = `${porcentaje}%`;
-
+        // Boton Guardar
+        btnGuardar.disabled = false;
+        btnGuardar.classList.remove("btn_off");
+        btnGuardar.classList.add("btn");
         // Agrega las clases según el rango de porcentaje
         if (porcentaje >= 90) {
             percentCelContainer.classList.remove("verde", "amarillo", "rojo");
@@ -191,12 +194,17 @@ function quitarColorDiv() {
 
 // BOTON CANCELAR
 // Para habilitar el boton cancelar:
-//  Si anioInput y select no estan vacios, habilitar btnCancelar
+//  Si anioInput y select no estan vacios, habilitar btnCancelar y btnResumen
 encuesta.addEventListener("change", () => {
     if (encuesta.value !== "" && select.value !== "selecciona") {
+        // Boton Cancelar
         btnCancelar.disabled = false;
         btnCancelar.classList.remove("btn_off");
         btnCancelar.classList.add("btn");
+        // Boton Resumen
+        btnResumen.disabled = false;
+        btnResumen.classList.remove("btn_off");
+        btnResumen.classList.add("btn");
     }
 });
 // si se da click en el boton borrar radioButtons y regresar el select a selecciona y borrar el input
@@ -209,9 +217,19 @@ btnCancelar.addEventListener("click", () => {
     quitarColorDiv()
     select.value = "selecciona";
     encuesta.value = "";
+    // Boton Cancelar
     btnCancelar.disabled = true;
     btnCancelar.classList.remove("btn");
     btnCancelar.classList.add("btn_off");
+    // Boton Guardar
+    btnGuardar.disabled = true;
+    btnGuardar.classList.remove("btn");
+    btnGuardar.classList.add("btn_off");
+    // Boton Resumen
+    btnResumen.disabled = true;
+    btnResumen.classList.remove("btn");
+    btnResumen.classList.add("btn_off");
+
     porcentajeH2.textContent = `0.00%`;
 });
 

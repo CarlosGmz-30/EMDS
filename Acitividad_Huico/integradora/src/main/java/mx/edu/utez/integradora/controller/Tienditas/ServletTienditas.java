@@ -22,7 +22,6 @@ public class ServletTienditas extends HttpServlet{
             case "/mostrarTienditas":
                 List<Tienditas> tienditasList = dao.findall();
                 req.getSession().setAttribute("tiendas", tienditasList);
-                System.out.println("Tiendas list size: " + tienditasList.size());
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
 
         }
