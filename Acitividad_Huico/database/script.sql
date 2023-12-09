@@ -203,3 +203,5 @@ CALL ObtenerTienditasEvaluadas('E02');
 -- Obtener el promedio general segun la encuesta
 CALL ObtenerPromedioGeneral('E01');
 CALL ObtenerPromedioGeneral('E02');
+
+SELECT * FROM respuestas WHERE id_tiendita = 'TDA02' AND id_encuesta = 'E01';

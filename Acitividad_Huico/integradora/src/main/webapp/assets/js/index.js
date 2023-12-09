@@ -72,6 +72,26 @@ function cambiarColorCelda(opcion, celda) {
         default:
             break;
     }
+
+    switch (opcion) {
+        case "1":
+            celda.classList.add('rojo');
+            break;
+        case "2":
+            celda.classList.add('naranja');
+            break;
+        case "3":
+            celda.classList.add('amarillo');
+            break;
+        case "4":
+            celda.classList.add('verde');
+            break;
+        case "5":
+            celda.classList.add('azul');
+            break;
+        default:
+            break;
+    }
 }
 
 function calcularPorcentaje() {

@@ -1,5 +1,7 @@
 package mx.edu.utez.integradora.models.Respuestas;
 
+import java.util.Arrays;
+
 public class Respuestas {
 /*
     id_respuesta varchar(5) not null primary key,
@@ -15,6 +17,8 @@ public class Respuestas {
     private int[] valor;
 
     public Respuestas() {
+        this.id_pregunta = new String[8]; // o el tamaño que necesites
+        this.valor = new int[8]; // o el tamaño que necesites
     }
 
     public Respuestas(int id_respuesta, String id_tiendita, String id_encuesta, String[] id_pregunta, int[] valor) {
@@ -64,4 +68,12 @@ public class Respuestas {
     public void setValor(int[] valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-15s %-15s %-15s %-15s %-15s",
+                id_respuesta, id_tiendita, id_encuesta,
+                Arrays.toString(id_pregunta), Arrays.toString(valor));
+    }
+
 }

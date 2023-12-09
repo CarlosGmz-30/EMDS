@@ -1,6 +1,7 @@
 <jsp:include page="/mostarEncuestas"/>
 <jsp:include page="/mostrarTienditas"/>
 <jsp:include page="/mostrarPreguntas"/>
+<jsp:include page="/mostrarRespuestas"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -12,6 +13,9 @@
 </c:if>
 <c:if test="${empty preguntas}">
     <jsp:forward page="/mostrarPreguntas"/>
+</c:if>
+<c:if test="${empty respuestas}">
+    <jsp:forward page="/mostrarRespuestas"/>
 </c:if>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>

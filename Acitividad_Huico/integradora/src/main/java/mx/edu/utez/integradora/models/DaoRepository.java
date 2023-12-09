@@ -4,5 +4,4 @@ public interface DaoRepository<T> {
     List<T> findall();
     boolean create(T object);
 
-
 }

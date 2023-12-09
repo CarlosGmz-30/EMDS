@@ -14,10 +14,26 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ServletRespuestas", urlPatterns = {"/crearRespuestas"})
+@WebServlet(name = "ServletRespuestas", urlPatterns = {"/crearRespuestas" , "/mostrarRespuestas"})
 public class ServletRespuestas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // si se selecciona una tiendita y encuesta y ya esta seleccionada, mostrar las respuestas que puso
+        resp.setCharacterEncoding("UTF-8");
+        String option = req.getServletPath();
+        RespuestasDao dao = new RespuestasDao();
+        switch (option) {
+            case "/mostrarRespuestas":
+                String id_tiendita = req.getParameter("tienditas");
+                System.out.println("ID Tiendita: " + id_tiendita);
+                String id_encuesta = req.getParameter("encuenta");
+                System.out.println("ID Encuesta: " + id_encuesta);
+                List<Respuestas> respuestasList = dao.findRespuestas(id_tiendita, id_encuesta);
+                req.getSession().setAttribute("respuestas", respuestasList);
+                System.out.println("Respuestas list size: " + respuestasList.size());
+                req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                break;
+        }
 
     }
 
