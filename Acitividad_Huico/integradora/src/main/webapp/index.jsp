@@ -14,9 +14,6 @@
 <c:if test="${empty preguntas}">
     <jsp:forward page="/mostrarPreguntas"/>
 </c:if>
-<c:if test="${empty respuestas}">
-    <jsp:forward page="/mostrarRespuestas"/>
-</c:if>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
@@ -154,22 +151,82 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
 <script>
+    const selectTienda = document.getElementById('lang');
+    const selectEncuesta = document.getElementById('search');
+    const radiosBtns = document.querySelectorAll('input[type="radio"]');
+    let idTienda = 0;
+    let idEncuesta = 0;
+
+    selectTienda.addEventListener("change", (e) => {
+        if (e.target.value !== 'selecciona') {
+            idTienda = e.target.value;
+            selectEncuesta.addEventListener("change", (e) => {
+                if (e.target.value !== 'selecciona') {
+                    idEncuesta = e.target.value;
+                    encuestaRespondida(idTienda, idEncuesta);
+                }
+            })
+        }
+    })
+
+    function encuestaRespondida(tiendaId, encuestaId) {
+        fetch('${pageContext.request.contextPath}/mostrarRespuestas?idTiendita=' + tiendaId + '&idEncuesta=' + encuestaId)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.id_tiendita !== null) {
+                    Swal.fire({
+                        title: 'Encuesta respondida',
+                        html: '<p>La tienda ya ha respondido esta encuesta</p>' +
+                            '<p>Encuesta: ' + data.id_encuesta + '</p>' +
+                            '<p>Tienda: ' + data.id_tiendita + '</p>' +
+                            '<p>Preguntas: ' + data.id_pregunta + '</p>' +
+                            '<p>Respuestas: ' + data.valor + '</p>'
+                    });
+                } else {
+                    console.log('Encuesta no respondida');
+                }
+            })
+            .catch(error => {
+                console.error('Error al realizar la petición:', error);
+            });
+    }
+
     function guardarFormulario() {
         document.getElementById('form').submit();
+    }
+
+    function getColorClass(promedio) {
+        if (promedio >= 90) {
+            return "azul";
+        } else if (promedio >= 80 && promedio < 90) {
+            return "verde";
+        } else if (promedio >= 70 && promedio < 80) {
+            return "amarillo";
+        } else if (promedio >= 60 && promedio < 70) {
+            return "naranja";
+        } else {
+            return "rojo";
+        }
     }
 
     function mostrarResumen() {
         const selectedEncuestaId = document.getElementById('search').value;
         // Realizar una solicitud AJAX al servlet
         $.get('${pageContext.request.contextPath}/mostrarResumen', {idEncuesta: selectedEncuestaId}, function (data) {
+            const promedio = data.promedioGeneral;
+            const color = getColorClass(promedio);
             Swal.fire({
                 title: 'Resumen',
                 html: '<p>Número de tiendas: ' + data.numTiendas + '</p>' +
                     '<p>Número de tiendas evaluadas: ' + data.numTiendasEvaluadas + '</p>' +
-                    '<p>Promedio General: ' + data.promedioGeneral + '</p>'
+                    '<p id="totalAvg" class="' + color + '">Promedio General: ' + data.promedioGeneral + '</p>'
             });
         });
     }
 </script>
-
 </html>

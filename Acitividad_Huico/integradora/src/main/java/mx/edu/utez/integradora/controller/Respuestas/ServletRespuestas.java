@@ -1,5 +1,6 @@
 package mx.edu.utez.integradora.controller.Respuestas;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.edu.utez.integradora.models.Preguntas.PreguntasDao;
 import mx.edu.utez.integradora.models.Respuestas.Respuestas;
 import mx.edu.utez.integradora.models.Respuestas.RespuestasDao;
@@ -24,14 +25,16 @@ public class ServletRespuestas extends HttpServlet {
         RespuestasDao dao = new RespuestasDao();
         switch (option) {
             case "/mostrarRespuestas":
-                String id_tiendita = req.getParameter("tienditas");
+                String id_tiendita = req.getParameter("idTiendita");
                 System.out.println("ID Tiendita: " + id_tiendita);
-                String id_encuesta = req.getParameter("encuenta");
+                String id_encuesta = req.getParameter("idEncuesta");
                 System.out.println("ID Encuesta: " + id_encuesta);
-                List<Respuestas> respuestasList = dao.findRespuestas(id_tiendita, id_encuesta);
-                req.getSession().setAttribute("respuestas", respuestasList);
-                System.out.println("Respuestas list size: " + respuestasList.size());
-                req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                Respuestas respuestasList = dao.findRespuestas(id_tiendita, id_encuesta);
+                ObjectMapper mapper = new ObjectMapper();
+                String respuestasJson = mapper.writeValueAsString(respuestasList);
+
+                resp.setContentType("application/json");
+                resp.getWriter().write(respuestasJson);
                 break;
         }
 

@@ -11,29 +11,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RespuestasDao implements DaoRepository<Respuestas> {
-    public List<Respuestas> findRespuestas(String idTiendita, String idEncuesta) {
+    public Respuestas findRespuestas(String idTiendita, String idEncuesta) {
         Connection con = new MysqlConector().connect();
-        List<Respuestas> respuestas = new ArrayList<>();
+        Respuestas respuestas = new Respuestas();
 
         try {
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM respuestas WHERE id_tiendita = ? AND id_encuesta = ?;");
             stmt.setString(1, idTiendita);
             stmt.setString(2, idEncuesta);
+
+            // Lists to store id_pregunta and valor
+            List<String> idPreguntaList = new ArrayList<>();
+            List<Integer> valorList = new ArrayList<>();
+
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
-                Respuestas r = new Respuestas();
-                r.setId_respuesta(res.getInt("id_respuesta"));
-                r.setId_tiendita(res.getString("id_tiendita"));
-                r.setId_encuesta(res.getString("id_encuesta"));
-
-                // Utiliza el índice del bucle para asignar valores a los arreglos
-                int i = res.getRow() - 1; // Restamos 1 para que i esté en el rango [0, 7]
-                r.getId_pregunta()[i] = res.getString("id_pregunta");
-                r.getValor()[i] = res.getInt("valor");
-
-                respuestas.add(r);
+                respuestas.setId_tiendita(res.getString("id_tiendita"));
+                respuestas.setId_encuesta(res.getString("id_encuesta"));
+                idPreguntaList.add(res.getString("id_pregunta"));
+                valorList.add(res.getInt("valor"));
             }
+            // Convert lists to arrays
+            respuestas.setId_pregunta(idPreguntaList.toArray(new String[0]));
+            respuestas.setValor(valorList.stream().mapToInt(Integer::intValue).toArray());
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -46,7 +48,6 @@ public class RespuestasDao implements DaoRepository<Respuestas> {
         }
         return respuestas;
     }
-
 
 
     @Override
