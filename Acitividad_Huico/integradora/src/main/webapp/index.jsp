@@ -105,7 +105,7 @@
             </thead>
             <tbody>
             <c:forEach items="${preguntas}" var="pregunta">
-                <tr>
+                <tr id="${pregunta.id_pregunta}">
                     <td style="border-right: 2px solid #42413D;"><input type="hidden" name="${pregunta.id_pregunta}"
                                                                         value="${pregunta.id_pregunta}">${pregunta.nombre}
                     </td>
@@ -180,13 +180,82 @@
             .then(data => {
                 if (data.id_tiendita !== null) {
                     Swal.fire({
+                        // centrarlo hasta arriba y en el centro
+                        position: 'top-center',
                         title: 'Encuesta respondida',
-                        html: '<p>La tienda ya ha respondido esta encuesta</p>' +
-                            '<p>Encuesta: ' + data.id_encuesta + '</p>' +
-                            '<p>Tienda: ' + data.id_tiendita + '</p>' +
-                            '<p>Preguntas: ' + data.id_pregunta + '</p>' +
-                            '<p>Respuestas: ' + data.valor + '</p>'
+                        html: '<p><h1>La tienda ya ha respondido esta encuesta</h1></p>',
+                        icon: 'warning',
+                        preConfirm: () => {
+                            // Limpiar radio buttons
+                            resetRadioButtons();
+                            // Restablecer valores de los selects
+                            resetSelects();
+                            // Restablecer colores de las celdas
+                            resetTDColores();
+                            // Restablecer porcentaje a 0.00% y quitarle la clase de color
+                            resetPercent();
+                            // Deshabilitar botones
+                            disableButtons();
+                        },
+                        // si le da click fuera del alert se cierra y se ejecuta el preConfirm
+                        onclose: () => {
+                            // Limpiar radio buttons
+                            resetRadioButtons();
+                            // Restablecer valores de los selects
+                            resetSelects();
+                            // Restablecer colores de las celdas
+                            resetTDColores();
+                            // Restablecer porcentaje a 0.00% y quitarle la clase de color
+                            resetPercent();
+                            // Deshabilitar botones
+                            disableButtons();
+                        }
                     });
+
+                    for (let i = 0; i < data.id_pregunta.length; i++) {
+                        const pregunta = data.id_pregunta[i];
+                        const valor = parseInt(data.valor[i], 10); // Convertir a entero
+                        const trElement = document.getElementById(pregunta);
+                        if (trElement) {
+                            let classToFind;
+                            switch (valor) {
+                                case 1:
+                                    classToFind = 'mala';
+                                    break;
+                                case 2:
+                                    classToFind = 'regular';
+                                    break;
+                                case 3:
+                                    classToFind = 'buena';
+                                    break;
+                                case 4:
+                                    classToFind = 'muy_buena';
+                                    break;
+                                case 5:
+                                    classToFind = 'excelente';
+                                    break;
+                                default:
+                                    classToFind = '';
+                            }
+
+                            if (classToFind) {
+                                const radioBtn = trElement.querySelector('input[type="radio"].' + classToFind);
+
+                                if (radioBtn) {
+                                    radioBtn.checked = true;
+                                    const tdElement = radioBtn.closest('td');
+                                    if (tdElement) {
+                                        // Cambiar la clase del <td> que contiene el radio button
+                                        tdElement.className = classToFind;
+                                        // Cambiar el color de la celda
+                                        cambiarColorCelda1(tdElement);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    calcularPorcentaje();
                 } else {
                     console.log('Encuesta no respondida');
                 }
@@ -222,11 +291,92 @@
             const color = getColorClass(promedio);
             Swal.fire({
                 title: 'Resumen',
-                html: '<p>Número de tiendas: ' + data.numTiendas + '</p>' +
-                    '<p>Número de tiendas evaluadas: ' + data.numTiendasEvaluadas + '</p>' +
+                icon: 'info',
+                html: '<p><h2>Número de tiendas: ' + data.numTiendas + '</h2></p>' +
+                    '<p><h3>Número de tiendas evaluadas: ' + data.numTiendasEvaluadas + '</h3></p>' +
                     '<p id="totalAvg" class="' + color + '">Promedio General: ' + data.promedioGeneral + '</p>'
             });
         });
+    }
+
+    function cambiarColorCelda1(celda) {
+        celda.classList.remove('rojo', 'naranja', 'amarillo', 'verde', 'azul');
+        // Obtener la clase actual del elemento
+        const currentClass = celda.className;
+
+        // Le asignamos una clase dependiendo de la clase actual
+        switch (currentClass) {
+            case "mala":
+                celda.classList.add('rojo');
+                break;
+            case "regular":
+                celda.classList.add('naranja');
+                break;
+            case "buena":
+                celda.classList.add('amarillo');
+                break;
+            case "muy_buena":
+                celda.classList.add('verde');
+                break;
+            case "excelente":
+                celda.classList.add('azul');
+                break;
+            default:
+                break;
+        }
+    }
+
+    function resetRadioButtons() {
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.checked = false;
+            radio.disabled = true; // Deshabilitar radio buttons
+        });
+    }
+
+    function resetSelects() {
+        const selects = document.querySelectorAll('select');
+        selects.forEach(select => {
+            select.selectedIndex = 0;
+        });
+    }
+
+    function resetTDColores() {
+        const tdElements = document.querySelectorAll('td');
+        tdElements.forEach(td => {
+            td.classList.remove('rojo', 'naranja', 'amarillo', 'verde', 'azul');
+        });
+    }
+
+// quitarle la clase al h1 con id percent_cel y se le vuelva a poder el porcentaje 0.0%
+    function resetPercent() {
+        const percent = document.getElementById('percent_cel');
+        percent.classList.remove('rojo', 'naranja', 'amarillo', 'verde', 'azul');
+        percent.innerHTML = '0.00%';
+    }
+
+    // deshabilitar botones
+    function disableButtons() {
+        //const btnBorrar = document.getElementById('btnBorrar');
+        const btnCancelar = document.getElementById('btnCancelar');
+        const btnResumen = document.getElementById('btnResumen');
+        const btnGuardar = document.getElementById('btnGuardar');
+
+        btnCancelar.disabled = true;
+        btnCancelar.classList.remove("btn");
+        btnCancelar.classList.add("btn_off");
+        // Boton Guardar
+        btnGuardar.disabled = true;
+        btnGuardar.classList.remove("btn");
+        btnGuardar.classList.add("btn_off");
+        // Boton Resumen
+        btnResumen.disabled = true;
+        btnResumen.classList.remove("btn");
+        btnResumen.classList.add("btn_off");
+        // Boton Borrar
+        //btnBorrar.disabled = true;
+        //btnBorrar.classList.remove("btn");
+        //btnBorrar.classList.add("btn_off");
     }
 </script>
 </html>
